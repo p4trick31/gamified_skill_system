@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gamified Skill Tracker</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 50px;
+            background: #0f172a;
+            color: white;
+        }
+
+        nav h2 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        nav button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+
+        .login-btn {
+            background: #38bdf8;
+            color: white;
+        }
+
+        .signup-btn {
+            background: #22c55e;
+            color: white;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 16px;
+            color: #cbd5e1;
+        }
+
+        /* FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 60px 50px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        /* MODALS */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            width: 350px;
+            padding: 25px;
+            border-radius: 12px;
+            animation: pop 0.3s ease;
+        }
+
+        @keyframes pop {
+            from {transform: scale(0.8); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            background: #0f172a;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .close {
+            margin-top: 10px;
+            text-align: center;
+            cursor: pointer;
+            color: red;
+        }
+
+    #toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* BASE TOAST (MODERN CARD STYLE) */
+.toast {
+    min-width: 260px;
+    max-width: 320px;
+
+    padding: 14px 16px;
+    border-radius: 12px;
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+
+    background: rgba(15, 23, 42, 0.95); /* dark glass */
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    animation: toastIn 0.35s ease;
+}
+
+/* SUCCESS STYLE */
+#toast-container{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    z-index: 99999;
+}
+
+/* TOAST CARD */
+.toast{
+    min-width: 280px;
+    max-width: 350px;
+
+    padding: 14px 18px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(12px);
+
+    color: #111827;
+    font-size: 14px;
+    font-weight: 500;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.12),
+        0 4px 10px rgba(0,0,0,0.05);
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    display: flex;
+    align-items: center;
+
+    animation: toastSlide 0.4s ease;
+}
+
+/* SUCCESS */
+.toast.success{
+    border-left: 5px solid #22c55e;
+}
+
+/* ERROR */
+.toast.error{
+    border-left: 5px solid #ef4444;
+}
+
+/* SHOW ANIMATION */
+@keyframes toastSlide{
+    from{
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+<!-- TOAST MESSAGES -->
+<div id="toast-container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="toast {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<!-- NAV -->
+<nav>
+    <h2>Gamified Skill Tracker</h2>
+
+    <div>
+        <button class="login-btn" onclick="openLogin()">Login</button>
+        <button class="signup-btn" onclick="openSignup()">Sign Up</button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>WEB-BASED GAMIFIED SKILL CHALLENGES TRACKER FOR ADAPTIVE LEARNING AND ACADEMIC GROWTH OF SENIOR HIGH SCHOOL STUDENTS</h1>
+    <p>
+        Adaptive learning platform designed for Senior High School students to enhance skills,
+        track academic progress, and support informed career and college decisions.
+    </p>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <div class="card">
+        <h3>🎮 Gamified Learning</h3>
+        <p>Earn points and track progress through interactive challenges.</p>
+    </div>
+
+    <div class="card">
+        <h3>📊 Performance Tracking</h3>
+        <p>Monitor academic growth with real-time analytics.</p>
+    </div>
+
+    <div class="card">
+        <h3>🎓 Adaptive Learning</h3>
+        <p>Personalized challenges based on student performance.</p>
+    </div>
+
+    <div class="card">
+        <h3>📍 SHS Focused</h3>
+        <p>Designed specifically for Grade 11 and 12 students.</p>
+    </div>
+</section>
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+        <h2>Login</h2>
+
+        <form method="POST" action="/login/">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <button class="btn" type="submit">Login</button>
+        </form>
+
+        <div class="close" onclick="closeLogin()">Close</div>
+    </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div class="modal" id="signupModal">
+    <div class="modal-content">
+        <h2>Sign Up</h2>
+
+        <form method="POST" action="/signup/">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <select name="role">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+            </select>
+
+            <button class="btn" type="submit">Create Account</button>
+        </form>
+
+        <div class="close" onclick="closeSignup()">Close</div>
+    </div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+function openLogin(){
+    document.getElementById("loginModal").style.display = "flex";
+}
+
+function closeLogin(){
+    document.getElementById("loginModal").style.display = "none";
+}
+
+function openSignup(){
+    document.getElementById("signupModal").style.display = "flex";
+}
+
+function closeSignup(){
+    document.getElementById("signupModal").style.display = "none";
+}
+</script>
+
+<script>
+window.onload = function () {
+    const toasts = document.querySelectorAll(".toast");
+
+    toasts.forEach((toast) => {
+        // show animation delay
+        setTimeout(() => {
+            toast.style.opacity = "0";
+            toast.style.transform = "translateX(100%)";
+            toast.style.transition = "0.5s ease";
+
+            // remove from DOM after fade
+            setTimeout(() => {
+                toast.remove();
+            }, 500);
+
+        }, 2000); // 1.5 seconds display time
+    });
+};
+</script>
+
+</body>
+</html>

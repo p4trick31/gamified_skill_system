@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Critical Thinking Challenge</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:#f4f7fb;
+            color:#1e293b;
+        }
+
+        /* BACK BUTTON */
+        .back{
+            position:fixed;
+            top:20px;
+            left:20px;
+
+            background:white;
+            padding:10px 14px;
+            border-radius:10px;
+
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+            text-decoration:none;
+            color:#0f172a;
+
+            font-weight:500;
+            font-size:14px;
+        }
+
+        .back:hover{
+            background:#e2e8f0;
+        }
+
+        /* HEADER */
+        .header{
+            text-align:center;
+            padding:70px 20px 30px;
+        }
+
+        .header h1{
+            font-size:32px;
+            margin-bottom:10px;
+        }
+
+        .header p{
+            max-width:750px;
+            margin:auto;
+            color:#64748b;
+            font-size:14px;
+            line-height:1.6;
+        }
+
+        /* CONTAINER */
+        .container{
+            padding:20px 40px 60px;
+        }
+
+        /* GRID */
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:25px;
+        }
+
+        /* CARD */
+        .card{
+            background:white;
+
+            border-radius:18px;
+
+            padding:25px;
+
+            box-shadow:0 10px 25px rgba(0,0,0,0.06);
+
+            transition:0.3s ease;
+        }
+
+        .card:hover{
+            transform:translateY(-6px);
+        }
+
+        .badge{
+            display:inline-block;
+
+            background:#dbeafe;
+            color:#2563eb;
+
+            padding:6px 14px;
+
+            border-radius:30px;
+
+            font-size:12px;
+            font-weight:600;
+        }
+
+        .xp{
+            float:right;
+            color:#22c55e;
+            font-weight:600;
+            font-size:13px;
+        }
+
+        .card h3{
+            margin-top:15px;
+            font-size:20px;
+        }
+
+        .card p{
+            margin-top:10px;
+            font-size:14px;
+            color:#64748b;
+            line-height:1.6;
+        }
+
+        .features{
+            margin-top:15px;
+        }
+
+        .features li{
+            margin-bottom:8px;
+            font-size:14px;
+            color:#334155;
+        }
+
+        .btn-group{
+            margin-top:20px;
+            display:flex;
+            gap:10px;
+        }
+
+        .btn{
+            flex:1;
+
+            border:none;
+
+            padding:12px;
+
+            border-radius:10px;
+
+            cursor:pointer;
+
+            font-size:14px;
+            font-weight:500;
+
+            transition:0.3s ease;
+        }
+
+        .create{
+            background:#0f172a;
+            color:white;
+        }
+
+        .create:hover{
+            background:#1e293b;
+        }
+
+        .view{
+            background:#e2e8f0;
+            color:#0f172a;
+        }
+
+        .view:hover{
+            background:#cbd5e1;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:768px){
+            .container{
+                padding:20px;
+            }
+
+            .header h1{
+                font-size:26px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- BACK -->
+<a href="{% url 'challenges' %}" class="back">← Back</a>
+
+<!-- HEADER -->
+<div class="header">
+
+    <h1>Critical Thinking Activities</h1>
+
+    <p>
+        Enhance students’ problem-solving and analytical skills
+        through real-world scenarios and solution-based learning tasks.
+    </p>
+
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="grid">
+
+        <!-- ACTIVITY 1 -->
+        <div class="card">
+
+            <span class="badge">Activity 1</span>
+            <span class="xp">+50 XP</span>
+
+            <h3>Scenario Analysis Quiz</h3>
+
+            <p>
+                Students analyze real-life school or community situations
+                and answer critical-thinking questions.
+            </p>
+
+            <ul class="features">
+                <li>✔ Multiple Choice Questions</li>
+                <li>✔ Pre-Test / Post-Test</li>
+                <li>✔ Automatic Scoring</li>
+                <li>✔ XP Reward System</li>
+            </ul>
+
+            <div class="btn-group">
+                <button class="btn create">Create Activity</button>
+                <button class="btn view">View Submissions</button>
+            </div>
+
+        </div>
+
+        <!-- ACTIVITY 2 -->
+        <div class="card">
+
+            <span class="badge">Activity 2</span>
+            <span class="xp">+70 XP</span>
+
+            <h3>Solution Proposal Activity</h3>
+
+            <p>
+                Students create action plans or written solutions
+                for identified school or community problems.
+            </p>
+
+            <ul class="features">
+                <li>✔ Teacher Evaluation</li>
+                <li>✔ Rubric Scoring</li>
+                <li>✔ Feedback System</li>
+                <li>✔ Submission Tracking</li>
+            </ul>
+
+            <div class="btn-group">
+                <button class="btn create">Create Activity</button>
+                <button class="btn view">View Submissions</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

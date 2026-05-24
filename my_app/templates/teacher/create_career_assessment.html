@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Career Assessment</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:#f4f7fb;
+            color:#1e293b;
+        }
+
+        .back{
+            position:fixed;
+            top:20px;
+            left:20px;
+            background:white;
+            padding:10px 14px;
+            border-radius:10px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+            text-decoration:none;
+            color:#0f172a;
+            font-weight:500;
+        }
+
+        .container{
+            max-width:800px;
+            margin:80px auto;
+            background:white;
+            padding:25px;
+            border-radius:18px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        h2{
+            margin-bottom:20px;
+        }
+
+        label{
+            font-size:14px;
+            font-weight:500;
+        }
+
+        input, textarea{
+            width:100%;
+            padding:10px;
+            margin-top:6px;
+            margin-bottom:15px;
+            border:1px solid #ddd;
+            border-radius:8px;
+        }
+
+        .row{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:10px;
+        }
+
+        .btn{
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:10px;
+            background:#0f172a;
+            color:white;
+            cursor:pointer;
+            font-size:14px;
+        }
+
+        .btn:hover{
+            background:#1e293b;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<a href="{% url 'career_exploration' %}" class="back">← Back</a>
+
+<div class="container">
+
+    <h2>Create Career Interest Question</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Question</label>
+        <textarea name="question" placeholder="Enter question..." required></textarea>
+
+        <div class="row">
+            <div>
+                <label>Option A</label>
+                <input type="text" name="option_a">
+            </div>
+            <div>
+                <label>Option B</label>
+                <input type="text" name="option_b">
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <label>Option C</label>
+                <input type="text" name="option_c">
+            </div>
+            <div>
+                <label>Option D</label>
+                <input type="text" name="option_d">
+            </div>
+        </div>
+
+        <label>Correct Answer</label>
+        <input type="text" name="correct_answer" placeholder="A / B / C / D">
+
+        <label>XP Points</label>
+        <input type="number" name="xp" value="60">
+
+        <button class="btn">Save Question</button>
+    </form>
+
+</div>
+
+</body>
+</html>

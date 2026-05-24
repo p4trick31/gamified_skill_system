@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Career Exploration Challenge</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:#f4f7fb;
+            color:#1e293b;
+        }
+
+        .back{
+            position:fixed;
+            top:20px;
+            left:20px;
+            background:white;
+            padding:10px 14px;
+            border-radius:10px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+            text-decoration:none;
+            color:#0f172a;
+            font-weight:500;
+        }
+
+        .header{
+            text-align:center;
+            padding:70px 20px 30px;
+        }
+
+        .header h1{
+            font-size:32px;
+            margin-bottom:10px;
+        }
+
+        .header p{
+            max-width:750px;
+            margin:auto;
+            color:#64748b;
+            font-size:14px;
+            line-height:1.6;
+        }
+
+        .container{
+            padding:20px 40px 60px;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:25px;
+        }
+
+        .card{
+            background:white;
+            border-radius:18px;
+            padding:25px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.06);
+            transition:0.3s ease;
+        }
+
+        .card:hover{
+            transform:translateY(-6px);
+        }
+
+        .top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .badge{
+            background:#dcfce7;
+            color:#16a34a;
+            padding:6px 12px;
+            border-radius:30px;
+            font-size:12px;
+            font-weight:600;
+        }
+
+        .xp{
+            color:#22c55e;
+            font-weight:600;
+            font-size:13px;
+        }
+
+        .card h3{
+            margin-top:15px;
+            font-size:20px;
+        }
+
+        .card p{
+            margin-top:10px;
+            font-size:14px;
+            color:#64748b;
+            line-height:1.6;
+        }
+
+        .features{
+            margin-top:15px;
+        }
+
+        .features li{
+            margin-bottom:8px;
+            font-size:14px;
+            color:#334155;
+        }
+
+        .btn{
+            margin-top:20px;
+            width:100%;
+            border:none;
+            padding:12px;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:14px;
+            font-weight:500;
+            background:#0f172a;
+            color:white;
+            transition:0.3s ease;
+        }
+
+        .btn:hover{
+            background:#1e293b;
+        }
+
+        @media(max-width:768px){
+            .container{padding:20px;}
+            .header h1{font-size:26px;}
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- BACK -->
+<a href="{% url 'challenges' %}" class="back">← Back</a>
+
+<!-- HEADER -->
+<div class="header">
+
+    <h1>Career Exploration Activities</h1>
+
+    <p>
+        Discover future career paths, assess personal interests,
+        and reflect on academic and professional goals for better decision-making.
+    </p>
+
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="grid">
+
+        <!-- ACTIVITY 3 -->
+        <div class="card">
+
+            <div class="top">
+                <span class="badge">Activity 3</span>
+                <span class="xp">+60 XP</span>
+            </div>
+
+            <h3>Career Interest Assessment</h3>
+
+            <p>
+                Students answer questions about interests, strengths,
+                and preferred skills to identify suitable career paths.
+            </p>
+
+            <ul class="features">
+                <li>✔ Interest Questionnaire</li>
+                <li>✔ Automated Scoring</li>
+                <li>✔ Career Matching System</li>
+                <li>✔ Progress Analytics</li>
+            </ul>
+
+           <a href="{% url 'create_career_assessment' %}">
+    <button class="btn">Create Questions</button>
+</a>
+
+        </div>
+
+        <!-- ACTIVITY 4 -->
+        <div class="card">
+
+            <div class="top">
+                <span class="badge">Activity 4</span>
+                <span class="xp">+70 XP</span>
+            </div>
+
+            <h3>Future Career Reflection</h3>
+
+            <p>
+                Students write reflections about their desired course or career
+                and explain their long-term academic and life goals.
+            </p>
+
+            <ul class="features">
+                <li>✔ Reflection Submission</li>
+                <li>✔ Teacher Feedback</li>
+                <li>✔ Career Goal Tracking</li>
+                <li>✔ Growth Monitoring</li>
+            </ul>
+
+           <a href="{% url 'create_career_reflection' %}">
+    <button class="btn">Create Reflection</button>
+</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
